@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GuessTheNumber</title>
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <label for="difficulty">Difficulty:</label>
+    <input type="range" id="difficulty" min="1" max="20" value="5" />
+    <span id="difficultyValue">level 5</span>
+    <div class="slider"></div>
+
+    <label for="tries">Tries:</label>
+    <input type="range" id="tries" min="6" max="16" value="8" />
+    <span id="triesValue">3 tries</span>
+    <div class="slider"></div>
+
+    <div id="startGame"><h1>Start Game</h1></div>
+
+    <button id="gameHistory">Game History</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
