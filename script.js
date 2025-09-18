@@ -26,6 +26,28 @@ gameHistoryButton.addEventListener("click", () => {
   document.body.appendChild(gameHistory);
 });
 
+const lastGame = document.createElement("div");
+lastGame.id = "lastGame";
+
+const observe = new MutationObserver((mutatuionsList) => {
+  for (const mutation of mutatuionsList) {
+    if (mutation.type === "childList") {
+      mutation.removedNodes.forEach((node) => {
+        if (node.id === "game") {
+          lastGame.innerHTML = localStorage.getItem("lastGame");
+          document.body.appendChild(lastGame);
+          document.addEventListener("click", (e) => {
+            if (e.target !== lastGame) {
+              document.body.removeChild(lastGame);
+            }
+          });
+        }
+      });
+    }
+  }
+});
+observe.observe(document.body, { childList: true });
+
 startGame.addEventListener("click", () => {
   number = Math.floor(Math.random() * (difficulty.value * 10));
 
@@ -130,13 +152,12 @@ startGame.addEventListener("click", () => {
           newGame.innerHTML += " You didn't get it on ";
         }
         newGame.innerHTML += new Date();
-        previousGames.appendChild(newGame);
+        localStorage.setItem("lastGame", newGame.innerHTML);
 
+        previousGames.appendChild(newGame);
         localStorage.setItem("previousGames", previousGames.innerHTML);
-        guess.addEventListener("click", () => {
-          document.body.removeChild(game);
-        });
-        tryCounter = 0;
+        document.body.removeChild(game);
+        tryCounter = 1;
       }
     } else {
       guessResponse.innerText = "Invalid entry";

@@ -16,7 +16,7 @@ body button {
 
 #startGame {
   background: linear-gradient(270deg, #a8e6cf, #56ab2f, #a8e6cf);
-  animation: gradientShift 15s ease infinite;
+  animation: gradientShift 5s ease infinite;
   background-size: 200%;
   text-align: center;
   margin: 12px 20%;
@@ -30,11 +30,9 @@ body button {
   0% {
     background-position: 0% 37%;
   }
-
   50% {
     background-position: 37% 72%;
   }
-
   100% {
     background-position: 72% 100%;
   }
@@ -88,6 +86,19 @@ body button {
   align-items: center;
   flex-direction: column;
   overflow-y: scroll;
+}
+#lastGame {
+  position: fixed;
+  height: 80vh;
+  width: 30%;
+  top: 10%;
+  left:20%;
+  background-color: #ceee1cf2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 8px;
 }
 #guessInput {
   margin: 5px;
