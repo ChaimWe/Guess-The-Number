@@ -7,6 +7,7 @@ const game = document.getElementById("game");
 const gameHistoryButton = document.getElementById("gameHistory");
 let tryCounter = 1;
 let number;
+let temp;
 
 difficulty.addEventListener("input", () => {
   updateValue(difficulty, difficultyValue);
@@ -134,9 +135,6 @@ startGame.addEventListener("click", () => {
           newGuess.innerHTML = guessInput.value;
           previousGuesses.appendChild(newGuess);
         }
-        if (guessInput.value == number) {
-          guessResponse.innerText = `You got it!!`;
-        }
         tryCounter++;
       } else {
         guessResponse.innerText = "Your tries are maxed out";
@@ -147,11 +145,13 @@ startGame.addEventListener("click", () => {
           number +
           `. You had ${tries.value / 2} tries.`;
         if (guessInput.value == number) {
-          newGame.innerHTML += ` You got it in ${tryCounter} tries!`;
+          guessResponse.innerText = `You got it!!`;
+          newGame.innerHTML +=
+            ` You got it in ${tryCounter} tries! \n` + new Date();
         } else {
-          newGame.innerHTML += " You didn't get it on ";
+          newGame.innerHTML +=
+            " Your last guess was ${guessInput.value} \n" + new Date();
         }
-        newGame.innerHTML += new Date();
         localStorage.setItem("lastGame", newGame.innerHTML);
 
         previousGames.appendChild(newGame);
